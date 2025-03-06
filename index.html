@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion-Based Music Recommender</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-music"></i> Emotion-Based Music Recommender</h1>
+
+        <div class="input-section">
+            <div class="webcam-section">
+                <h3><i class="fas fa-camera"></i> Webcam Input</h3>
+                <video id="webcam" autoplay playsinline></video>
+                <button id="capture">
+                    <i class="fas fa-camera"></i>
+                    Capture Expression
+                </button>
+            </div>
+
+            <div class="text-section">
+                <h3><i class="fas fa-keyboard"></i> Text Input</h3>
+                <textarea id="emotion-text" placeholder="How are you feeling right now? Describe your emotions..."></textarea>
+                <button id="analyze-text">
+                    <i class="fas fa-search"></i>
+                    Analyze Text
+                </button>
+            </div>
+        </div>
+
+        <div class="loading">
+            <i class="fas fa-spinner"></i>
+            <p>Finding the perfect song for your mood...</p>
+        </div>
+
+        <div id="error-message"></div>
+
+        <div id="result">
+            <div class="emotion-display">
+                <i class="fas fa-heart"></i>
+                Detected Emotion: <strong id="detected-emotion"></strong>
+            </div>
+            <div class="music-player">
+                <div class="song-info">
+                    <i class="fas fa-music"></i>
+                    <div>
+                        <h3 id="song-name"></h3>
+                        <p id="artist-name"></p>
+                    </div>
+                </div>
+                <div class="audio-player">
+                    <div id="youtube-player" class="youtube-player"></div>
+                    <div class="custom-controls">
+                        <div class="progress-container" id="progress-container">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="current-time">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
+                        <div class="controls">
+                            <button class="control-button" id="prev-button">
+                                <i class="fas fa-backward"></i>
+                            </button>
+                            <button class="control-button" id="play-pause-button">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="control-button" id="next-button">
+                                <i class="fas fa-forward"></i>
+                            </button>
+                        </div>
+                        <div class="volume-control">
+                            <i class="fas fa-volume-down volume-icon"></i>
+                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="100">
+                            <i class="fas fa-volume-up volume-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul id="song-list"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
